@@ -78,9 +78,13 @@ void delete_goat(set<Goat> &trip) {
 
 void add_goat(set<Goat> &trip, string n[] , string c[]) {
 	Goat temp(n[rand() % SZ_NAMES], rand() % (MAX_AGE + 1), c[rand() % SZ_COLORS]);
+	int oSize = trip.size();
 	trip.insert(temp);
-	cout << "Added Goat: " << temp.get_name() << " (" << temp.get_age()
-	     << ", " << temp.get_color() << ")\n";
+	if (oSize == trip.size())
+		cout << "Duplicate goat generated, not added to set.\n";
+	else
+		cout << "Added Goat: " << temp.get_name() << " (" << temp.get_age()
+	         << ", " << temp.get_color() << ")\n";
 }
 
 void display_trip(set<Goat> trip) {
