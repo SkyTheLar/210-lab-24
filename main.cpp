@@ -21,7 +21,6 @@ int main_menu();
 
 int main() {
     srand(time(0));
-    bool again;
 
     // read & populate arrays for names and colors
     ifstream fin("names.txt");
@@ -35,17 +34,31 @@ int main() {
     while (fin1 >> colors[i++]);
     fin1.close();
 
+    list<Goat> trip;
+    int choice;
+    do {
+    	choice = main_menu();
+    	switch (choice) {
+    	case 1: add_goat(trip, names, colors); break;
+    	default: break;
+    	}
+
+    } while (choice != 4);
+
     return 0;
 }
 
 void add_goat(list<Goat> &trip, string n[] , string c[]) {
 	Goat temp;
-
+	temp.set_name(n[rand() % SZ_NAMES]);
+	temp.set_color(c[rand() % SZ_COLORS]);
+	temp.set_age(rand() % (MAX_AGE + 1));
+	trip.push_back(temp);
 }
 
 int main_menu() {
 	int choice;
-	cout << "*** GOAT MANAGER 3001 ***\n"
+	cout << "\n*** GOAT MANAGER 3001 ***\n"
 		 << "[1] Add a goat\n"
 		 << "[2] Delete a goat\n"
 		 << "[3] List goats\n"
@@ -54,7 +67,7 @@ int main_menu() {
 	cin >> choice;
 	//input validation
 	while (choice < 1 || choice > 4) {
-		cout << "Invalid choice, input a number 1-4: "
+		cout << "Invalid choice, input a number 1-4: ";
 		cin >> choice;
 	}
 	return choice;
