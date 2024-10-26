@@ -73,6 +73,7 @@ void delete_goat(list<Goat> &trip) {
 	for (int i = 1; i < toDel; i++)
 		current++;
 	trip.erase(current);
+	cout << "Deleted goat #" << toDel << endl;
 }
 
 void add_goat(list<Goat> &trip, string n[] , string c[]) {
