@@ -34,6 +34,7 @@ int main() {
     while (fin1 >> colors[i++]);
     fin1.close();
 
+    //menu loop
     list<Goat> trip;
     int choice;
     do {
@@ -52,8 +53,8 @@ int main() {
 
 int select_goat(list<Goat> trip) {
 	int choice;
-	cout << "Select a goat by number:\n";
 	display_trip(trip);
+	cout << "\nSelect a goat by number: ";
 	cin >> choice;
 	while (choice < 1 || choice > trip.size()) {
 		cout << "Invalid input, enter a number 1-" << trip.size() << ": ";
@@ -64,7 +65,7 @@ int select_goat(list<Goat> trip) {
 
 void delete_goat(list<Goat> &trip) {
 	if (trip.empty()) {
-		cout << "List is empty.\n";
+		cout << "\nList is empty.\n";
 		return;
 	}
 	int toDel = select_goat(trip);
@@ -75,14 +76,14 @@ void delete_goat(list<Goat> &trip) {
 }
 
 void add_goat(list<Goat> &trip, string n[] , string c[]) {
-	Goat temp;
-	temp.set_name(n[rand() % SZ_NAMES]);
-	temp.set_color(c[rand() % SZ_COLORS]);
-	temp.set_age(rand() % (MAX_AGE + 1));
+	Goat temp(n[rand() % SZ_NAMES], rand() % (MAX_AGE + 1), c[rand() % SZ_COLORS]);
 	trip.push_back(temp);
+	cout << "Added Goat: " << temp.get_name() << " (" << temp.get_age()
+	     << ", " << temp.get_color() << ")\n";
 }
 
 void display_trip(list<Goat> trip) {
+	cout << "\nDisplaying Goats:\n";
 	int count = 1;
 	if (trip.empty()) {
 		cout << "List is empty.\n";
