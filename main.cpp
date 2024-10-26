@@ -40,6 +40,7 @@ int main() {
     	choice = main_menu();
     	switch (choice) {
     	case 1: add_goat(trip, names, colors); break;
+    	case 2: delete_goat(trip); break;
     	case 3: display_trip(trip); break;
     	default: break;
     	}
@@ -58,7 +59,11 @@ int select_goat(list<Goat> trip) {
 }
 
 void delete_goat(list<Goat> &trip) {
-
+	int toDel = select_goat(trip);
+	auto current = trip.begin();
+	for (int i = 1; i < toDel; i++)
+		current++;
+	trip.erase(current);
 }
 
 void add_goat(list<Goat> &trip, string n[] , string c[]) {
