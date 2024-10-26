@@ -15,7 +15,7 @@ const int SZ_NAMES = 200, SZ_COLORS = 25, MAX_AGE = 20;
 
 int select_goat(list<Goat> trip);
 void delete_goat(list<Goat> &trip);
-void add_goat(list<Goat> &trip, string [], string []);
+void add_goat(list<Goat>&, string [], string []);
 void display_trip(list<Goat> trip);
 int main_menu();
 
@@ -38,11 +38,24 @@ int main() {
     return 0;
 }
 
+void add_goat(list<Goat> &trip, string n[] , string c[]) {
+	Goat temp;
+
+}
+
 int main_menu() {
+	int choice;
 	cout << "*** GOAT MANAGER 3001 ***\n"
 		 << "[1] Add a goat\n"
 		 << "[2] Delete a goat\n"
 		 << "[3] List goats\n"
-		 << ""
-		 << ""
+		 << "[4] Quit\n"
+		 << "Choice --> ";
+	cin >> choice;
+	//input validation
+	while (choice < 1 || choice > 4) {
+		cout << "Invalid choice, input a number 1-4: "
+		cin >> choice;
+	}
+	return choice;
 }
