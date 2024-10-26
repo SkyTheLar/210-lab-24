@@ -25,11 +25,11 @@ public:
     void set_color(string c)        { color = c; }
     string get_color() const        { return color; }
 
-    bool operator< (const Goat &other) const {
+    bool operator < (const Goat &other) const {
     	return name < other.get_name();
     }
 
-    bool operator= (const Goat &other) const {
+    bool operator = (const Goat &other) const {
     	if (name == other.get_name() && age == other.get_age() && color == other.get_color())
     		return true;
     	else
