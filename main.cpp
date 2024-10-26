@@ -55,10 +55,18 @@ int select_goat(list<Goat> trip) {
 	cout << "Select a goat by number:\n";
 	display_trip(trip);
 	cin >> choice;
+	while (choice < 1 || choice > trip.size()) {
+		cout << "Invalid input, enter a number 1-" << trip.size() << ": ";
+		cin >> choice;
+	}
 	return choice;
 }
 
 void delete_goat(list<Goat> &trip) {
+	if (trip.empty()) {
+		cout << "List is empty.\n";
+		return;
+	}
 	int toDel = select_goat(trip);
 	auto current = trip.begin();
 	for (int i = 1; i < toDel; i++)
@@ -98,7 +106,7 @@ int main_menu() {
 	cin >> choice;
 	//input validation
 	while (choice < 1 || choice > 4) {
-		cout << "Invalid choice, input a number 1-4: ";
+		cout << "Invalid input, enter a number 1-4: ";
 		cin >> choice;
 	}
 	return choice;
