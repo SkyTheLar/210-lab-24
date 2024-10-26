@@ -28,6 +28,13 @@ public:
     bool operator< (const Goat &other) const {
     	return name < other.get_name();
     }
+
+    bool operator= (const Goat &other) const {
+    	if (name == other.get_name() && age == other.get_age() && color == other.get_color())
+    		return true;
+    	else
+    		return false;
+    }
 };
 
 #endif

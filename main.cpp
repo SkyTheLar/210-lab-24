@@ -1,22 +1,22 @@
 /***************************************************
 
-COMSC 210 | Lab 23 | Skylar Robinson | IDE Used: Eclipse
+COMSC 210 | Lab 24 | Skylar Robinson | IDE Used: Eclipse
 
 *****************************************************/
 
 #include <iostream>
 #include <fstream>
 #include <iomanip>
-#include <list>
+#include <set>
 #include "Goat.h"
 using namespace std;
 
 const int SZ_NAMES = 200, SZ_COLORS = 25, MAX_AGE = 20;
 
-int select_goat(list<Goat>);
-void delete_goat(list<Goat> &);
-void add_goat(list<Goat>&, string [], string []);
-void display_trip(list<Goat>);
+int select_goat(set<Goat>);
+void delete_goat(set<Goat> &);
+void add_goat(set<Goat>&, string [], string []);
+void display_trip(set<Goat>);
 int main_menu();
 
 int main() {
@@ -35,7 +35,7 @@ int main() {
     fin1.close();
 
     //menu loop
-    list<Goat> trip;
+    set<Goat> trip;
     int choice;
     do {
     	choice = main_menu();
@@ -51,7 +51,7 @@ int main() {
     return 0;
 }
 
-int select_goat(list<Goat> trip) {
+int select_goat(set<Goat> trip) {
 	int choice;
 	display_trip(trip);
 	cout << "\nSelect a goat by number: ";
@@ -63,9 +63,9 @@ int select_goat(list<Goat> trip) {
 	return choice;
 }
 
-void delete_goat(list<Goat> &trip) {
+void delete_goat(set<Goat> &trip) {
 	if (trip.empty()) {
-		cout << "\nList is empty.\n";
+		cout << "\nSet is empty.\n";
 		return;
 	}
 	int toDel = select_goat(trip);
@@ -76,18 +76,18 @@ void delete_goat(list<Goat> &trip) {
 	cout << "Deleted goat #" << toDel << endl;
 }
 
-void add_goat(list<Goat> &trip, string n[] , string c[]) {
+void add_goat(set<Goat> &trip, string n[] , string c[]) {
 	Goat temp(n[rand() % SZ_NAMES], rand() % (MAX_AGE + 1), c[rand() % SZ_COLORS]);
-	trip.push_back(temp);
+	trip.insert(temp);
 	cout << "Added Goat: " << temp.get_name() << " (" << temp.get_age()
 	     << ", " << temp.get_color() << ")\n";
 }
 
-void display_trip(list<Goat> trip) {
+void display_trip(set<Goat> trip) {
 	cout << "\nDisplaying Goats:\n";
 	int count = 1;
 	if (trip.empty()) {
-		cout << "List is empty.\n";
+		cout << "Set is empty.\n";
 		return;
 	}
 	for (Goat g : trip){
